@@ -1,0 +1,12 @@
+{
+  "description": "示例：Flowise 输出到 n8n Webhook",
+  "webhook_url": "https://n8n-xxxx.up.railway.app/webhook/receive-article",
+  "method": "POST",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": {
+    "title": "SEO文章标题",
+    "content": "这里是 Flowise 生成的文章内容"
+  }
+}

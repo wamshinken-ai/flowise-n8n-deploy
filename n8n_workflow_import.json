@@ -1,0 +1,60 @@
+{
+  "name": "AI SEO Article Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "generate-seo-article",
+        "options": {}
+      },
+      "id": "1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://flowise:3000/api/v1/prediction/execute",
+        "options": {},
+        "bodyParametersJson": "{ \"prompt\": \"Write a 5000-word SEO article about wooden frame factory for overseas buyers.\" }"
+      },
+      "id": "2",
+      "name": "HTTP Request to Flowise",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [600, 300]
+    },
+    {
+      "parameters": {},
+      "id": "3",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [950, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request to Flowise",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request to Flowise": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
